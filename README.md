@@ -1,3 +1,4 @@
+ HEAD
 # Pokémon Judge Penalty Tracker
 
 Aplicação web mobile-first para juízes registrarem penalidades em torneios
@@ -77,3 +78,4 @@ test/         # Vitest + fast-check (testes de propriedade e por exemplo)
   *service worker* de cache de assets: o escopo da spec cobre operação offline
   da lógica e dos dados, não o carregamento inicial sem rede. Adicionar um SW é
   uma evolução possível (ex.: `vite-plugin-pwa`) sem impacto na arquitetura.
+
