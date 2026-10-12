@@ -1,0 +1,20 @@
+{
+  "name": "Pkm Judge Penalty Tracker",
+  "short_name": "Pkm Judge",
+  "description": "Registro de penalidades para juízes de torneios Play! Pokémon.",
+  "start_url": "./",
+  "scope": "./",
+  "lang": "pt-BR",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1420",
+  "theme_color": "#10151f",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,543 @@
+:root {
+  --bg: #0f1420;
+  --surface: #1a2130;
+  --surface-2: #232c3f;
+  --border: #2e3a52;
+  --text: #e8edf6;
+  --muted: #9aa7bd;
+  --primary: #ffcb05; /* amarelo Pokémon */
+  --primary-ink: #1a1a1a;
+  --accent: #3b6fe0; /* azul Pokémon */
+  --danger: #e2574c;
+  --success: #3ec28f;
+  --warn: #e8a33d;
+  --radius: 14px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tap: 44px; /* área mínima de toque (Req 11.2) */
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* sem rolagem horizontal (Req 11.1) */
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.appbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, #141b29, #10151f);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appbar .iconbtn {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border-radius: 10px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.appbar .iconbtn.back {
+  display: none;
+}
+.appbar.has-back .iconbtn.back {
+  display: inline-flex;
+}
+
+.appbar-titles {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.15;
+}
+.appbar-titles .brand {
+  font-size: 15px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.appbar-titles .context {
+  font-size: 12px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.appbar-titles .context:empty {
+  display: none;
+}
+
+.logo-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: inset 0 0 0 3px #10151f, 0 0 0 2px var(--primary);
+  flex: 0 0 auto;
+}
+
+main {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: calc(96px + var(--safe-bottom));
+}
+
+/* Cards & listas */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.list-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: var(--tap);
+}
+.list-item:active {
+  transform: scale(0.995);
+}
+.list-item .grow {
+  flex: 1;
+  min-width: 0;
+}
+.list-item .title {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-item .sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+.chev {
+  color: var(--muted);
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 32px 16px;
+}
+.empty .big {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+/* Formulários */
+.field {
+  margin-bottom: 14px;
+}
+.field label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 16px; /* evita zoom no iOS */
+  font-family: inherit;
+  min-height: var(--tap);
+}
+.field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.field .hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.field.invalid input,
+.field.invalid select,
+.field.invalid textarea {
+  border-color: var(--danger);
+}
+.field .error {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 6px;
+  display: none;
+}
+.field.invalid .error {
+  display: block;
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  min-height: var(--tap);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn.primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+  border-color: var(--primary);
+}
+.btn.accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn.danger {
+  background: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.btn.ghost {
+  background: transparent;
+}
+.btn.small {
+  width: auto;
+  padding: 8px 12px;
+  font-size: 13px;
+  min-height: 36px;
+}
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-row .btn {
+  flex: 1;
+  min-width: 120px;
+}
+
+.fab {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(16px + var(--safe-bottom));
+  max-width: 608px;
+  width: calc(100% - 32px);
+  z-index: 20;
+}
+/* Preserva a centralização ao pressionar: compõe o translate com o scale,
+   em vez de deixar o .btn:active sobrescrever o translateX e "pular" para o lado. */
+.fab:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* Badges de penalidade */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+.badge.caution { background: #3a3f2a; color: #e9e07a; border-color: #5a5a2a; }
+.badge.warning { background: #3d3320; color: #f0c060; border-color: #6a5320; }
+.badge.double_prize_loss,
+.badge.quad_prize_loss { background: #3a2a1f; color: #f0a060; border-color: #6a4320; }
+.badge.game_loss { background: #3a2320; color: #f08a7a; border-color: #6a2f20; }
+.badge.match_loss { background: #3a1f24; color: #f07a90; border-color: #6a2030; }
+.badge.disqualification { background: #3a1f1f; color: #ff8080; border-color: #7a2020; }
+
+/* Item de penalidade */
+.pen {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.pen .pen-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.pen .pen-cat {
+  font-weight: 600;
+}
+.pen .pen-meta {
+  color: var(--muted);
+  font-size: 13px;
+}
+.pen .pen-desc {
+  margin-top: 6px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pen .pen-actions {
+  margin-top: 10px;
+}
+
+/* Alertas / caixa de escalonamento */
+.alert {
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.alert.warn {
+  border-color: var(--warn);
+  background: #2e2616;
+  color: #f3cf8e;
+}
+.alert.info {
+  border-color: var(--accent);
+  background: #182340;
+}
+.alert.danger {
+  border-color: var(--danger);
+  background: #2e1a18;
+  color: #f0a79f;
+}
+.alert strong {
+  color: #fff;
+}
+.recommend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 4px 0 12px;
+}
+.section-title h2 {
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  font-size: 14px;
+  margin: 0;
+}
+.meta-grid dt {
+  color: var(--muted);
+}
+.meta-grid dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+pre.report {
+  white-space: pre;
+  word-break: normal;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 12px;
+  overflow: auto;
+  max-height: 320px;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+details.card > summary {
+  list-style: none;
+  color: var(--text);
+}
+details.card > summary::-webkit-details-marker {
+  display: none;
+}
+details.card > summary::before {
+  content: "▸ ";
+  color: var(--muted);
+}
+details.card[open] > summary::before {
+  content: "▾ ";
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(80px + var(--safe-bottom));
+  transform: translateX(-50%) translateY(20px);
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 50;
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show {
+  opacity: 0.96;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Bottom sheet */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  z-index: 40;
+}
+.sheet-backdrop.show {
+  display: block;
+}
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  background: var(--surface);
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  border-top: 1px solid var(--border);
+  padding: 20px 16px calc(20px + var(--safe-bottom));
+  max-width: 640px;
+  margin: 0 auto;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+  max-height: 92dvh;
+  overflow-y: auto;
+}
+.sheet.show {
+  transform: translateY(0);
+}
+.sheet h3 {
+  margin: 0 0 14px;
+  font-size: 17px;
+}
+
+/* Botão como link (tela Sobre) */
+a.btn {
+  text-decoration: none;
+}
+
+/* Tela Sobre */
+.about-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+.about-version {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hidden {
+  display: none !important;
+}
